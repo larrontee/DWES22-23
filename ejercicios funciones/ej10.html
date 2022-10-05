@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Confeccionar un programa que permita cargar un número entero positivo de 
+hasta tres cifras y muestre un mensaje indicando si tiene 1, 2, o 3 cifras. -->
+</head>
+
+<body>
+
+</body>
+<script>
+    window.onload = contador;
+
+    function contador() {
+        let num = parseInt(prompt("introduce un num entero positivo de hasta 3 cifras", "123"));
+        // switch (num) {
+        //     case num >= 0 && num < 10:
+        //         alert("El num tiene 1 cifra");
+        //         break;
+        //     case num >= 10 && num < 100:
+        //         alert("El num tiene 2 cifra");
+        //         break;
+        //     case num >= 100 && num < 1000:
+        //         alert("El num tiene 3 cifra");
+        //         break;
+        // }
+        if (num >= 0 && num < 10) {
+            alert("El num tiene 1 cifra");
+        } else if (num >= 10 && num < 100) {
+            alert("El num tiene 2 cifra");
+        } else {
+            alert("El num tiene 3 cifra");
+        }
+    }
+
+</script>
+
+</html>

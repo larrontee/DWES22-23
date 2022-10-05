@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    //  De un operario se conoce su sueldo y los años de antigüedad. Se pide realizar
+    // un programa que lea los datos de entrada (sueldo y antigüedad) e informe de
+    // su sueldo actualizado según las siguientes condiciones:
+    // ● Si el sueldo es inferior a 1000 y su antigüedad es igual o superior a 10
+    // años, otorgarle un aumento del 20 %, mostrar el sueldo a pagar.
+    // ● Si el sueldo es inferior a 1000 pero su antigüedad es menor a 10 años,
+    // otorgarle un aumento de 5 %.
+    // ● Si el sueldo es mayor o igual a 1000 mostrar el sueldo en la página sin
+    // cambios
+
+
+    window.onload = operacion;
+    function operacion() {
+        let sueldo = parseInt(prompt("sueldo"));
+        let años = parseInt(prompt("años"));
+
+        if (sueldo < 1000 && antiguedad > 10) {
+            sueldo += sueldo * 0.2;
+            alert("Su sueldo queda actualizado a: " + sueldo);
+        } else if (sueldo < 1000 && antiguedad < 10) {
+            sueldo += sueldo * 0.05;
+            alert("Su sueldo queda actualizado a: " + sueldo);
+        } else {
+            alert("Su sueldo no ha cambiado: " + sueldo);
+        }
+
+    }
+</script>
+
+</html>

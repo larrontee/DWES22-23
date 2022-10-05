@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //      Realizar un programa que pida cargar una fecha cualquiera, luego verificar si 
+    // dicha fecha corresponde a Navidad (se debe cargar por separado el dia, el mes 
+    // y el año)
+
+    window.onload = navidad;
+    function navidad() {
+        let ano = prompt("Introduce el año", "2010");
+        let mes = prompt("Introduce el mes", "JuLio");
+        let dia = parseInt(prompt("Introduce el dia", "3"));
+        let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+        for (let i = 0; i < meses.length; i++) {
+            if (meses[i].toLowerCase == mes[i].toLowerCase) {
+                if (mes = meses[meses.length - 1] && dia === 25) {
+                    alert("Es navidad");
+                } else {
+
+                    alert("No es navidad");
+                }
+            }
+
+        }
+    }
+</script>
+
+</html>

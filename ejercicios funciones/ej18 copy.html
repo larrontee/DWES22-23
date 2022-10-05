@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    //     19. Realizar un programa que introduciendo el mes y el año devuelva el número de
+    // días que tiene dicho mes. Recordar que hay que controlar si el año es bisiesto.
+
+    window.onload = operacion;
+    function operacion() {
+        // let mes = (prompt("mes"));
+        // let fecha = parseInt(prompt("año"));
+        let ano = {
+            "meses": [
+                { "Enero": 31 },
+                { "Febrero": 28 },
+                { 'Marzo': 31 },
+                { 'Abril': 30 },
+                { 'Mayo': 31 },
+                { 'Junio': 30 },
+                { 'Julio': 31 },
+                { 'Agosto': 31 },
+                { 'Septiembre': 30 },
+                { 'Octubre': 31 },
+                { 'Noviembre': 30 },
+                { 'Diciembre': 31 }
+            ]
+        };
+
+        console.log(ano.meses[0]);
+    }
+</script>
+
+</html>

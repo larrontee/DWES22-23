@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Vamos a realizar un script que nos pregunte el nombre y la edad. Nos 
+    responderá con un saludo y nos dirá si somos menores o mayores de edad y 
+    los días que hemos vivido -->
+</head>
+
+<body>
+
+</body>
+<script>
+    window.onload = edad;
+    function edad() {
+        let nombre = prompt("¿Cual es tu nombre?", "Pedro");
+        let fecha = parseInt(prompt("¿Cual es tu año de nacimiento?", "2000"));
+        let respuesta = ((fecha + 18) <= 2022) ? "eres mayor de edad" : "eres menor de edad";
+        alert(respuesta);
+    }
+</script>
+
+</html>
