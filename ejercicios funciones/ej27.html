@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" name="" id="texto">
+        <button onclick="operacion()">aqui</button>
+    </div>
+    <div id="resultado"></div>
+</body>
+
+<script>
+    // Realiza una página que contenga una función JavaScript para hacer
+    // estadísticas sobre una cadena de texto que se introduzca, contando el número
+    // de veces que aparece cada letra. Se deberá mostrar un listado con las letras
+    // del abecedario con el número de veces que aparece cada letra en la cadena
+    // que se la pasa. Utilizar un Array para almacenar la información estadística. No
+    // se tendrán en cuenta que pudiera haber tildes, consideraremos que no existen
+    function operacion() {
+        const abecedario = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        let texto = document.getElementById("texto").value;
+        let resultado = document.getElementById("resultado");
+        let letras = texto.split('');
+        let contador = 0;
+
+        for (let i = 0; i < abecedario.length; i++) {
+            for (let j = 0; j < letras.length; j++) {
+                (abecedario[i] == letras[j]) ? contador++ : contador = contador;
+            }
+            resultado.innerHTML += "<p>" + abecedario[i] + "=" + contador;
+            contador = 0;
+        }
+
+
+
+
+
+    }
+</script>
+
+</html

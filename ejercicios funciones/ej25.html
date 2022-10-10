@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" name="" id="texto">
+        <button onclick="operacion()">aqui</button>
+    </div>
+</body>
+
+<script>
+    // 25. Leer una cadena de texto en un formulario y generar un array con la función
+    // split(). Posteriormente, mostrar la siguiente información: Número de palabras,
+    // primera palabra, última palabra
+
+    function operacion() {
+        let texto = document.getElementById("texto").value;
+        let palabras = texto.split(' ');
+        console.log(palabras);
+        console.log(palabras.length);
+        console.log(palabras[0]);
+        console.log(palabras[palabras.length - 1]);
+
+    }
+</script>
+
+</html

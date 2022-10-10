@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <p>separe los numeros por comas </p>
+        <input type="text" name="" id="texto">
+        <button onclick="cargarEjem()">Cargar ejemplo</button>
+        <button onclick="operacion()">calcular</button>
+        <button onclick="reiniciar()">Reiniciar</button>
+    </div>
+    <div id="resultado"></div>
+</body>
+
+<script>
+    //  Dado un vector de enteros, comprobar el mayor, el menor y por último la media
+    // de todos.
+    // El botón «Cargar Ejemplo» pondrá un ejemplo de números predefinidos
+
+    function operacion() {
+        let texto = document.getElementById("texto").value;
+        let resultado = document.getElementById("resultado");
+        let numeros = texto.split(',');
+
+        let mayor = 0;
+        let menor = numeros[0];
+        let media = 0;
+        let suma = 0;
+        let aux;
+        for (let i = 0; i < numeros.length; i++) {
+            aux = parseInt(numeros[i]);
+            suma += aux;
+            (aux > mayor) ? mayor = aux : mayor = mayor;
+            (aux < menor) ? menor = aux : menor = menor;
+        }
+
+        console.log(numeros);
+        console.log(suma);
+        console.log(numeros.length);
+        media = suma / numeros.length;
+        resultado.innerHTML += "<p> La suma " + suma + "</p>";
+        resultado.innerHTML += "<p> El mayor " + mayor + "</p>";
+        resultado.innerHTML += "<p> El menor " + menor + "</p>";
+        resultado.innerHTML += "<p> La media " + media + "</p>";
+    }
+
+    function cargarEjem() {
+
+
+        let numeros = [100, 2, 8]
+        let mayor = 0;
+        let menor = numeros[0];
+        let media = 0;
+        let suma = 0;
+        let aux;
+        for (let i = 0; i < numeros.length; i++) {
+            aux = parseInt(numeros[i]);
+            suma += aux;
+            (aux > mayor) ? mayor = aux : mayor = mayor;
+            (aux < menor) ? menor = aux : menor = menor;
+        }
+
+        console.log(numeros);
+        console.log(suma);
+        console.log(numeros.length);
+        media = suma / numeros.length;
+        resultado.innerHTML += "<p> La suma " + suma + "</p>";
+        resultado.innerHTML += "<p> El mayor " + mayor + "</p>";
+        resultado.innerHTML += "<p> El menor " + menor + "</p>";
+        resultado.innerHTML += "<p> La media " + media + "</p>";
+    }
+
+    function reiniciar() {
+        let resultado = document.getElementById("resultado");
+        resultado.innerHTML = "";
+    }
+</script>
+
+</html

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    // 0. Realizar un programa para un concesionario que calcule el descuento de un
+    // coche según su marca y modelo, en base a los siguientes datos:
+    // ● Si la marca es Renault tiene un 15% de descuento.
+    // ● Si la marca es Ford y el modelo es Fiesta tiene un descuento del 7%
+    // ● Si la marca es Ford y el modelo es Focus tiene un descuento del 10%
+    // ● El resto solo tiene un descuento del 5%.
+
+    window.onload = operacion;
+    function operacion() {
+        let marca = prompt("marca");
+        let modelo = prompt("modelo");
+        let precio = 1000;
+        if (marca = 'Reanult') {
+            precio -= precio * 0.15;
+        } else if (marca == 'Ford' && modelo == 'Fiesta') {
+            precio -= precio * 0.07;
+
+        } else if (marca == 'Ford' && modelo == 'Focus') {
+            precio -= precio * 0.1;
+
+        } else {
+            precio -= precio * 0.05;
+
+        }
+        alert(precio);
+
+    }
+</script>
+
+</html

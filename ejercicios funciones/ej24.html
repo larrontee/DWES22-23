@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    //     Realizar un programa que simule un Juego de dados. El usuario empieza con
+    // 50€ para apostar. El usuario indica a qué número apostar entre el 1 y el 6. Se
+    // hace una asignación al azar entre 1 y 6. Si el usuario acierta, gana el doble de
+    // lo apostado y si no acierta, pierde lo apostado. El juego acaba cuando el
+    // usuario llega a 0€ (pierde) o llega a 200€ (gana).
+
+    window.onload = operacion;
+    function operacion() {
+        let saldo = 50;
+        let apuesta;
+        let prediccion;
+        let tirada;
+
+        while (saldo > 0 && saldo < 200) {
+            apuesta = parseInt(prompt("Que cantidad apuesta?", "50"));
+            saldo = saldo - apuesta;
+            prediccion = parseInt(prompt("¿A qué número apostaras?(1-6)", "2"));
+            tirada = Math.floor(Math.random() * (7 - 1) + 1);
+            console.log(tirada);
+            console.log("apuesta " + apuesta);
+            saldo = (prediccion == tirada) ? saldo += apuesta * 2 : saldo = saldo;
+            console.log("saldo " + saldo);
+        }
+
+    }
+
+</script>
+
+</html>

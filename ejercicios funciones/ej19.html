@@ -18,12 +18,12 @@
 
     window.onload = operacion;
     function operacion() {
-        // let mes = (prompt("mes"));
+        // let mesIntroducido = (prompt("mes", 'Febrero'));
         // let fecha = parseInt(prompt("año"));
         let ano = {
             "meses": [
-                { "Enero": 31 },
-                { "Febrero": 28 },
+                { 'Enero': 31 },
+                { 'Febrero': 28 },
                 { 'Marzo': 31 },
                 { 'Abril': 30 },
                 { 'Mayo': 31 },
@@ -36,8 +36,13 @@
                 { 'Diciembre': 31 }
             ]
         };
+        let mes = 'Febrero';
+        // for (let i = 0; i < ano.meses.length; i++) {
+        //     if (mesIntroducido == ano.meses[i].mesIntroducido) {
+        //         alert
+        //     }
+        // }
 
-        console.log(ano.meses[0]);
     }
 </script>
 
