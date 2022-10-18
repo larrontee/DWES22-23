@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Crear un input y un button, cuando le demos al botón, se añadirá el texto que 
+    hemos puesto en el input en un div vacío. Recuerda se añadirá el texto, no se 
+    machaca lo que haya en el div -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div>
+
+        <input type="text" id="texto">
+        <button id="btn" onclick="anadirTexto()"> añadir texto</button>
+    </div>
+    <div id="notas"></div>
+</body>
+
+
+<script>
+    let btn = document.getElementById("btn");
+    let notas = document.getElementById("notas");
+    function anadirTexto() {
+        let texto = document.getElementById("texto").value;
+        console.log(texto);
+        notas.innerHTML += texto + " <br>";
+    }
+</script>
+
+</html>
