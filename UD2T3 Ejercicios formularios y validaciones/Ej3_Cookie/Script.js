@@ -11,11 +11,15 @@ const validacionApellido = /^[a-zA-Z]+$|[a-zA-Z]+\s[a-zA-Z]+$/;
 const validacionEmail = /^\w{6}@\w{5}.[a-z]{3}$/;
 const validacionWeb = /\w{4}.\w{3}$/;
 
+$form.addEventListener("submit", handleSubmit);
 function handleSubmit(e) {
     e.preventDefault();
     const nombre = $nombre.value;
     const apellido = $apellido.value;
+    let usuario=nombre+" "+apellido;  
     const email = $email.value;
+    set_cookie_correo(email);
+    set_cookie_usuario(usuario);
     const web = $web.value;
     if (vNombre(nombre) && vApellido(apellido) && vEmail(email) && vWeb(web)) {
         var registro = {
@@ -68,4 +72,20 @@ function vWeb(x) {
     return false;
 }
 
-$form.addEventListener("submit", handleSubmit);
+
+
+
+function set_cookie_correo(valor) {
+    let nombre="email";
+    let d = new Date();
+    d.setTime(d.getTime() + 24 * 60 * 60 * 1000);
+    let expiracion = "expires=" + d.toUTCString();
+    document.cookie = nombre + "=" + valor + ";" + expiracion + ";path=/";
+}
+function set_cookie_usuario(valor) {
+    let nombre="usuario";
+    let d = new Date();
+    d.setTime(d.getTime() + 24 * 60 * 60 * 1000);
+    let expiracion = "expires=" + d.toUTCString();
+    document.cookie = nombre + "=" + valor + ";" + expiracion + ";path=/";
+}

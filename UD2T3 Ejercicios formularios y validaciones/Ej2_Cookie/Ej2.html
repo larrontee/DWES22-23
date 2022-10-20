@@ -18,12 +18,18 @@
 <body>
     <fieldset>
         <form action="" id="formulario">
+            <label for="dni">DNI</label> <input type="text" name="" id="dni"><br>
             <label for=""></label>Nombre<input type="text" name="" id="nombre"><br>
             <label for=""></label>Apellidos<input type="text" name="" id="apellido"><br>
-            <label for=""></label>Email<input type="text" name="" id="email"><br>
-            <label for=""></label>Web Personal<input type="text" name="" id="web"><br>
+            <label for=""></label>Télefono<input type="text" name="" id="telefono"><br>
+            <input type="text" name="" id="comentario"><br>
+            <label for=""></label>Elija una hora<input type="time" name="" id="hora"><br>
             <input type="submit" value="enviar" id="submit">
+            <input type="button" value="reiniciar contador" id="reiniciar">
         </form>
+        <div>
+            <p id="errores"></p>
+        </div>
     </fieldset>
 </body>
 
