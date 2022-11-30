@@ -1,0 +1,83 @@
+
+
+Productos
+db.productos.insert([
+    {
+    "sku":000001,
+    "genero":"camisa",
+    "talla":"L",
+    "precio":100,
+    "tipo":"hombre",
+    "existencia": [
+        {tienda:"SE", cantidad:8},
+        {tienda:"CA",cantidad:12}
+        ],
+    },{
+    "sku":000011,
+    "genero":"camisa",
+    "talla":"M",
+    "precio":50,
+    "tipo":"mujer",
+    "existencia": [
+        {tienda:"SE", cantidad:15},
+        {tienda:"CA",cantidad:10}
+        ],
+    },{
+    "sku":000002,
+    "genero":"traje",
+    "talla":"M",
+    "precio":450,
+    "tipo":"mujer",
+    "existencia": [
+        {tienda:"SE", cantidad:5},
+        {tienda:"CA",cantidad:15}
+        ],
+    },{
+    "sku":000009,
+    "genero":"pantalon",
+    "talla":"L",
+    "precio":50,
+    "tipo":"hombre",
+    "existencia": [
+        {tienda:"SE", cantidad:100},
+        {tienda:"CA",cantidad:50}
+        ],
+    }
+])
+
+
+1. Abrimos una nueva tienda “CO”, donde solo se va a vender ropa de hombre y va a comenzar con un
+stock (cantidad) de cada producto de 10 prendas. Actualiza la BD.
+db.productos.updateMany({tipo:"hombre"},{$push:{existencia:{tienda:"CO",cantidad:10}}})
+
+2. Consulta la información de los dos productos de menor precio, muestra el sku, género y precio.
+db.productos.find({},{sku:1,genero:1,precio:1}).sort({precio:1}).limit(2)
+
+3. Mostrar los datos sku y precio de todos los productos que no se venden en la tienda “CO” o cuyo
+precio sea superior a 50, ordenados por precio descendente.
+db.productos.find({existencia:{$in:[{tienda:"CO"}]}},{sku:1,precio:1}).sort({precio:-1})
+db.productos.aggregate()
+
+4. Mostrar los datos sku, genero, talla y tipo de aquellos productos que tengan un stock inferior a 10
+prendas en alguna tienda y su precio sea mayor de 100, ordenados por talla y sku.
+db.productos.find({existencia:{cantidad:{$lt:10}}})
+db.productos.aggregate([{$unwind:"$existencia"},{$project:{sku:1,genero:1,precio:1,existencia:1}}])
+
+
+Diseño
+5. Añadir en la BD los datos sobre las ventas (tienda, sku, cantidad y fecha) qué diseño elegirías?
+razónalo y modifica la BD con un ejemplo.
+Índices
+
+Indices
+6. Qué índices crearías, suponiendo que el volumen de productos es muy grande (999999), Crea los
+índices en la BD y razona el motivo por el que has creado cada uno de ellos.
+¿Cómo comprobarías si ha mejorado el rendimiento de la BD?.
+
+7. Cuántos productos hay por tipo, su precio máximo y mínimo.
+
+8. Cuántos productos hay de cada género y su precio medio.
+
+9. Muestra el stock total existente (entre todas las tiendas) de cada producto.
+
+10. Visualización, de mayor a menor por tienda y producto, de la valoración de las existencias.

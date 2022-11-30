@@ -1,0 +1,49 @@
+[
+  {
+    "titulo": "Fight Club",
+    "director": "Chuck Palahniuk",
+    "anio": 1999,
+    "actores": ["Brad Pitt", "Edward Norton"]
+  },
+];
+db.puntuacion.find({finalizado:{$exists:false}}) ;
+db.puntuaciones.find({$and: [{favoritos:postre},{puntos:cocinar}]})
+db.peliculas.find({$and:[{_id:1},{_id:2}}]})
+db.puntuaciones.find({usuario:{$regex:"uli"}})
+
+db.puntuaciones.insertOne({ _id: 2, usuario : "pablito", puntos : 80, finalizado : false })
+db.puntuaciones.insertOne({ _id: 3, usuario : "paulina", puntos : 30 })
+  {
+    "titulo": "Pulp Fiction",
+    "director": "Quentin Tarantino",
+    "anio": 1994,
+    "actores": ["John Travolta", "Uma Thurman"]
+  },
+  {
+    "titulo": "Inglorious Basterds",
+    "director": "Quentin Tarantino",
+    "anio": 2009,
+    "actores": ["Brad Pitt", "Diane Kruger", "Eli Roth"]
+  },
+  {
+    "titulo": "The Hobbit: An Unexpected Journey",
+    "director": "J.R.R. Tolkein",
+    "anio": 2012,
+    "saga": "The Hobbit"
+  },
+  {
+    "titulo": "The Hobbit: The Desolation of Smaug",
+    "director": "J.R.R. Tolkein",
+    "anio": 2013,
+    "saga": "The Hobbit"
+  },
+  { "titulo": "Pee Wee Herman s Big Adventure" },
+  { "titulo": "Avatar" },
+  {
+    "titulo": "The Hobbit: The Battle of the Five Armies",
+    "director": "J.R.R. Tolkein",
+    "anio": 2012,
+    "saga": "The Hobbit",
+    "sinopsis": "Bilbo and Company are forced to engage in a war against an array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness."
+  }
+]

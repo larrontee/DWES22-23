@@ -1,0 +1,177 @@
+EJERCICIO 2 (6 puntos: Diseñar: 2puntos, Agregaciones: 3puntos, Índices: 1punto)
+Creación de una nueva BD que llamarás por tu nombre y número del ejercicio (ej:
+Angelica2). El esquema relacional es el siguiente:
+
+
+Actualmente hay más de 2.000 alumnos en 100 cursos distintos y 200 profesores, los datos
+mostrados son sólo una muestra de toda la información almacenada de cada entidad, por lo
+que podría existir riesgo de sobrepasar el tamaño máximo de documento, ya que cada
+curso realmente guarda la información de todas las materias, etc, que no vamos a tratar en
+el ejercicio, pero que debemos saberlo para poder diseñar correctamente nuestra BD.
+Diseña la BD según los criterios que consideres y que debes detallar, teniendo en cuenta
+las siguientes decisiones:
+● ¿Tenemos que normalizar? ¿Desnormalizar?¿ Un híbrido entre ambas?
+● Consultas que vayamos a realizar con más frecuencia
+● Escalabilidad según tamaño real de la BD y posible crecimiento
+
+
+Diseño 
+
+Alumno
+{
+    "L.uni":"String", 
+    "Nombre":"String",
+    "Edad":"Integer",
+    "Curso":["integer"],
+    "telefono":["integer"]
+}
+
+Curso
+{
+    "Nombre":"String",
+    "Nro":"Integer", 
+    "Profesores":["Integer"],
+    "Alumnos":["Integer"]
+}
+
+
+Profesor
+{
+    "NroLegajo":"String",
+    "Nombre":"String",
+    "Cargo":"String",
+    "Cursos":["string"]
+}
+
+
+DATOS
+
+ALUMNOS
+db.alumnos.insert(
+[
+    {
+    "L.uni":20200001, 
+    "Nombre":"José Ruiz Mateo",
+    "Edad":18,
+    "telefono":[954444444,600123456],
+    "Curso":[11],
+    },
+    {
+    "L.uni":20200002, 
+    "Nombre":"Cristina Bolancé Jiménez",
+    "Edad":19,
+    "telefono":[600234567],
+    "Curso":[11, 22],
+    },
+    {
+    "L.uni":20200003, 
+    "Nombre":"Felipe Díaz Perez",
+    "Edad":18,
+    "telefono":[954354444,601123456],
+    "Curso":[11],
+    },
+    {
+    "L.uni":20200004, 
+    "Nombre":"Lucía García Jiménez",
+    "Edad":19,
+    "telefono":[601234567],
+    "Curso":[22],
+    },
+    {
+    "L.uni":20200005, 
+    "Nombre":"Juan Rivera Lopez",
+    "Edad":28,
+    "telefono":[954554444, 602123456],
+    "Curso":[12],
+    },
+    {
+    "L.uni":20200006, 
+    "Nombre":"Carlota García Mendez",
+    "Edad":21,
+    "telefono":[602234567],
+    "Curso":[11, 22],
+    },
+    {
+    "L.uni":20200007, 
+    "Nombre":"Francisco López Perez",
+    "Edad":18,
+    "telefono":[954354554, 602123456],
+    "Curso":[11],
+    },
+    {
+    "L.uni":20200008, 
+    "Nombre":"Lidia Carrillo González",
+    "Edad":19,
+    "telefono":[602234267],
+    "Curso":[12],
+    }
+]
+    PROFESORES
+    [
+        {
+            "NroLegajo":"11111111A",
+            "Nombre":"Angelica Mora Nuñez",
+            "Cargo":"tutor",
+            "Cursos":[ 21, 22]
+        }
+        ,{
+            "NroLegajo":"22222222B",
+            "Nombre":"Antonio González Casado",
+            "Cargo":"tutor",
+            "Cursos":[ 21, 22]
+        }
+        ,{
+            "NroLegajo":"33333333C",
+            "Nombre":"José María García Durán",
+            "Cargo":"profesor",
+            "Cursos":[ 21, 22]
+        }
+        ,{
+            "NroLegajo":"44444444D",
+            "Nombre":"Carmen García Rufino",
+            "Cargo":"profesor",
+            "Cursos":[ 11, 12, 21, 22]
+        }
+    ]
+
+Curso
+{
+    "Nombre":"DAW1 Mañana",
+    "Nro":11, 
+    "Profesores":["Integer"],
+    "Alumnos":["Integer"]
+}
+
+
+Realiza las siguientes operaciones con Agregaciones sobre la Base de datos:
+1. Contabilizar la cantidad de profesores por cargo.
+db.profesores.aggregate([{$group:{_id:"$Cargo",profesores:{$sum:1}}}])
+
+
+
+2. Mostrar la media, mayor y menor edad de los alumnos por curso, ordenado por
+curso.
+db.alumnos.aggregate([{$group:{_id:"$Cargo",profesores:{$sum:1}}}])
+
+
+
+3. Mostrar los datos del alumno de mayor edad.
+db.alumnos.aggregate([{$project:{"Nombre":1,"Edad":{$max:{"$Edad"}}}},{$group:{_id:"$Edad"}}])
+
+
+
+4. Cursos que tengan al menos 2 alumnos entre 18 y 20 años (ambos inclusives).
+
+
+5. Listar los nombres de los cursos y de los alumnos, ordenados por curso y nombre
+del alumno.
+
+
+6. Por curso listar nombres de los profesores y cargo, ordenados por curso y nombre
+del profesor.
+
+Define los índices que consideréis necesarios para mejorar el rendimiento de la BD y
+justifica razonadamente su creación
+
+
+db.alumnos.createIndex("edad":1)

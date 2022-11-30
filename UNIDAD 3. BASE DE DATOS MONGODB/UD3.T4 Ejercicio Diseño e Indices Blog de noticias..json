@@ -1,0 +1,349 @@
+// autor
+{
+"nombre": "string",
+"nombre_usuario": "string",
+"cuenta_twitter": "string",
+"descripcion": "string",
+"telefonos":[],
+"direccion": {
+    "calle":"string",
+    "numero":"string",
+    "ciudad":"string",
+    "cp":"string"},
+    "id_noticias":[]
+}
+//noticia
+{
+"id_usuario":"string",
+"titulo":"string",
+"cuerpo":"string",
+"fecha":"string",
+"tags":[]
+}
+
+// comentario
+{   "id_usuario":"string",
+    "id_noticia":"string",
+    "fecha":"datetime",
+    "cuerpo":"string"}
+
+He elegido este diseño para la base de datos, referenciando cada collection ya que he suponido que el blog
+al que le hacemos la base de datos tendra gran cantidad aflunecia de datos.
+
+El usuario tendra en referenciado las noticias para poder ver sus publicaciones(1-N) y tambien los comentarios en diferentes noticias ya que si es un autor 
+que nos guste podremos saber su opinion sobre diferentes asuntos aunque no sea quien redacte la noticia(1-N).
+
+La noticia no tendra en refencia el usuario por si lo quiere publicar de forma anonima y tendra en refencia los comentarios.
+
+El comentario lo he dejado tal cual ya que las otras colecciones le hacen referencia a el.
+
+
+
+Insertar los datos:
+usuarios
+// ObjectId("636d562c12eea0a554e6caf1")
+{nombre_usuario: 'Frank_blog',nombre: 'Frank',cuenta_twitter: 'Frank_USE',descripcion: 'blogger aficionado',telefono1: '713128989',telefono2: '840932834',calle: 'Av. de los Castros',numero: '2256',cp: '39005',ciudad: 'Santander'},
+// 'ObjectId("636d56a212eea0a554e6caf2")'
+{nombre_usuario: 'Peter_blog',nombre: 'Peter',cuenta_twitter: 'Pete',descripcion: 'blogger aficionado',telefono1: '808080808',telefono2: '432342432',calle: 'Av. de los Rios',numero: '289',cp: '38015',ciudad: 'Santander'}
+// 'ObjectId("636d56cf12eea0a554e6caf3")'
+{nombre_usuario: 'Frank_blog',nombre: 'Frank',cuenta_twitter: 'Frank_USA',descripcion: 'blogger aficionado',telefono1: '713128989',telefono2: '111111111',calle: 'Av. de los Castros',numero: '2256',cp: '39005',ciudad: 'Santander'}
+
+Indicies:
+indice unico
+db.usuarios.createIndex({"nombre_usuario":1},{unique:true})
+db.usuarios.createIndex({"cuenta_twitter":1},{unique:true})
+db.usuarios.createIndex({"nombre_usuario":1,"cuenta_twitter":1},{unique:true})
+
+Noticias: 
+[{
+    "id_usuario":'ObjectId("636d562c12eea0a554e6caf1")',
+    "titulo":"noticia 1",
+    "cuerpo":"noticia 1",
+    "fecha":"2000/07/02",
+    "tags":["cumpleaños","nacimiento"]
+},
+{
+    "id_usuario":'ObjectId("636d562c12eea0a554e6caf1")',
+    "titulo":"noticia 2",
+    "cuerpo":"noticia 2",
+    "fecha":"2010/02/09",
+    "tags":["gol","partido"]
+},
+{
+    "id_usuario":'ObjectId("636d562c12eea0a554e6caf1")',
+    "titulo":"noticia 3",
+    "cuerpo":"noticia 3",
+    "fecha":"2020/03/15",
+    "tags":["covid"]
+},
+{
+    "id_usuario":'ObjectId("636d562c12eea0a554e6caf1")',
+    "titulo":"noticia 4",
+    "cuerpo":"noticia 4",
+    "fecha":"2022/05/27",
+    "tags":["trabajo"]
+},
+{
+    "id_usuario":'ObjectId("636d56a212eea0a554e6caf2")',
+    "titulo":"noticia 5",
+    "cuerpo":"noticia 5",
+    "fecha":"2015/02/09",
+    "tags":[]
+},
+{
+    "id_usuario":'ObjectId("636d56a212eea0a554e6caf2")',
+    "titulo":"noticia 6",
+    "cuerpo":"noticia 6",
+    "fecha":"2020/07/02",
+    "tags":[]
+},
+{
+    "id_usuario":'ObjectId("636d56a212eea0a554e6caf2")',
+    "titulo":"noticia 7",
+    "cuerpo":"noticia 7",
+    "fecha":"2045/07/02",
+    "tags":[]
+},
+{
+    "id_usuario":'ObjectId("636d56cf12eea0a554e6caf3")',
+    "titulo":"noticia 8",
+    "cuerpo":"noticia 8",
+    "fecha":"2014/02/09",
+    "tags":[]
+},
+{
+    "id_usuario":'ObjectId("636d56cf12eea0a554e6caf3")',
+    "titulo":"noticia 9",
+    "cuerpo":"noticia 9",
+    "fecha":"2012/07/02",
+    "tags":[]
+},
+{
+    "id_usuario":'ObjectId("636d56cf12eea0a554e6caf3")',
+    "titulo":"noticia 10",
+    "cuerpo":"noticia 10",
+    "fecha":"2030/12/31",
+    "tags":["noticia 10"]
+    }]
+    ----------------------------------------------------------------
+    // [
+    //     {
+    //       _id: ObjectId("63723a4af6bcecd64896b058"),
+    //       id_usuario: 'ObjectId("636d562c12eea0a554e6caf1")',
+    //       titulo: 'noticia 1',
+    //       cuerpo: 'noticia 1',
+    //       fecha: '2000/07/02',
+    //       tags: [ 'cumpleaños', 'nacimiento' ]
+    //     },
+    //     {
+    //       _id: ObjectId("63723a4af6bcecd64896b059"),
+    //       id_usuario: 'ObjectId("636d562c12eea0a554e6caf1")',
+    //       titulo: 'noticia 2',
+    //       cuerpo: 'noticia 2',
+    //       fecha: '2010/02/09',
+    //       tags: [ 'gol', 'partido' ]
+    //     },
+    //     {
+    //       _id: ObjectId("63723a4af6bcecd64896b05a"),
+    //       id_usuario: 'ObjectId("636d562c12eea0a554e6caf1")',
+    //       titulo: 'noticia 3',
+    //       cuerpo: 'noticia 3',
+    //       fecha: '2020/03/15',
+    //       tags: [ 'covid' ]
+    //     },
+    //     {
+    //       _id: ObjectId("63723a4af6bcecd64896b05b"),
+    //       id_usuario: 'ObjectId("636d562c12eea0a554e6caf1")',
+    //       titulo: 'noticia 4',
+    //       cuerpo: 'noticia 4',
+    //       fecha: '2022/05/27',
+    //       tags: [ 'trabajo' ]
+    //     },
+    //     {
+    //       _id: ObjectId("63723a4af6bcecd64896b05c"),
+    //       id_usuario: 'ObjectId("636d56a212eea0a554e6caf2")',
+    //       titulo: 'noticia 5',
+    //       cuerpo: 'noticia 5',
+    //       fecha: '2015/02/09',
+    //       tags: []
+    //     },
+    //     {
+    //       _id: ObjectId("63723a4af6bcecd64896b05d"),
+    //       id_usuario: 'ObjectId("636d56a212eea0a554e6caf2")',
+    //       titulo: 'noticia 6',
+    //       cuerpo: 'noticia 6',
+    //       fecha: '2020/07/02',
+    //       tags: []
+    //     },
+    //     {
+    //       _id: ObjectId("63723a4af6bcecd64896b05e"),
+    //       id_usuario: 'ObjectId("636d56a212eea0a554e6caf2")',
+    //       titulo: 'noticia 7',
+    //       cuerpo: 'noticia 7',
+    //       fecha: '2045/07/02',
+    //       tags: []
+    //     },
+    //     {
+    //       _id: ObjectId("63723a4af6bcecd64896b05f"),
+    //       id_usuario: 'ObjectId("636d56cf12eea0a554e6caf3")',
+    //       titulo: 'noticia 8',
+    //       cuerpo: 'noticia 8',
+    //       fecha: '2014/02/09',
+    //       tags: []
+    //     },
+    //     {
+    //       _id: ObjectId("63723a4af6bcecd64896b060"),
+    //       id_usuario: 'ObjectId("636d56cf12eea0a554e6caf3")',
+    //       titulo: 'noticia 9',
+    //       cuerpo: 'noticia 9',
+    //       fecha: '2012/07/02',
+    //       tags: []
+    //     },
+    //     {
+    //       _id: ObjectId("63723a4af6bcecd64896b061"),
+    //       id_usuario: 'ObjectId("636d56cf12eea0a554e6caf3")',
+    //       titulo: 'noticia 10',
+    //       cuerpo: 'noticia 10',
+    //       fecha: '2030/12/31',
+    //       tags: [ 'noticia 10' ]
+    //     }
+    //   ]
+
+
+
+
+
+
+    consultas
+    
+    consulta1
+    db.usuarios.find({},{"nombre_usuario":1,"cuenta_twitter":1}).sort({"cp":1})
+    
+    consulta2
+    db.noticias.find().sort({"fecha":-1}).limit(5)
+    
+    consulta3
+    db.noticias.find({tags:{$size:0}})
+    
+    consulta4
+    db.noticias.find({ $and: [ { <expression1> }, { <expression2> } , ... , { <expressionN> } ] })
+    
+    
+    insertar 6 comentarios 2 por usu
+    ObjectId("636d562c12eea0a554e6caf1")
+    'ObjectId("636d56a212eea0a554e6caf2")'
+    'ObjectId("636d56cf12eea0a554e6caf3")'
+    [{
+        "id_usuario":'ObjectId("636d562c12eea0a554e6caf1")',
+        "id_noticia":'ObjectId("63723a4af6bcecd64896b05a")',
+        "fecha":"2020/03/14",
+        "cuerpo":"comentario 1"},
+    {
+        "id_usuario":'ObjectId("636d562c12eea0a554e6caf1")',
+        "id_noticia":'ObjectId("63723a4af6bcecd64896b05d")',
+        "fecha":"2012/07/02",
+        "cuerpo":"comentario 2"},
+            {
+        "id_usuario":'ObjectId("636d56a212eea0a554e6caf2")',
+        "id_noticia":'ObjectId("63723a4af6bcecd64896b061")',
+        "fecha":"2030/12/31",
+        "cuerpo":"comentario 3"},
+    {
+        "id_usuario":'ObjectId("636d56a212eea0a554e6caf2")',
+        "id_noticia":'ObjectId("63723a4af6bcecd64896b05e")',
+        "fecha":"2045/07/02",
+        "cuerpo":"comentario 4"},
+    {
+        "id_usuario":'ObjectId("636d56cf12eea0a554e6caf3")',
+        "id_noticia":'ObjectId("63723a4af6bcecd64896b05c")',
+        "fecha":"2015/02/09",
+        "cuerpo":"comentario 5"},
+    {
+        "id_usuario":'ObjectId("636d56cf12eea0a554e6caf3")',
+        "id_noticia":'ObjectId("63723a4af6bcecd64896b059")',
+        "fecha":"2010/02/09",
+        "cuerpo":"comentario 6"}]
+        
+       blog> db.noticias.find()
+[
+  {
+    _id: ObjectId("63723a4af6bcecd64896b058"),
+    id_usuario: 'ObjectId("636d562c12eea0a554e6caf1")',
+    titulo: 'noticia 1',
+    cuerpo: 'noticia 1',
+    fecha: '2000/07/02',
+    tags: [ 'cumpleaños', 'nacimiento' ]
+  },
+  {
+    _id: ObjectId("63723a4af6bcecd64896b059"),
+    id_usuario: 'ObjectId("636d562c12eea0a554e6caf1")',
+    titulo: 'noticia 2',
+    cuerpo: 'noticia 2',
+    fecha: '2010/02/09',
+    tags: [ 'gol', 'partido' ]
+  },
+  {
+    _id: ObjectId("63723a4af6bcecd64896b05a"),
+    id_usuario: 'ObjectId("636d562c12eea0a554e6caf1")',
+    titulo: 'noticia 3',
+    cuerpo: 'noticia 3',
+    fecha: '2020/03/15',
+    tags: [ 'covid' ]
+  },
+  {
+    _id: ObjectId("63723a4af6bcecd64896b05b"),
+    id_usuario: 'ObjectId("636d562c12eea0a554e6caf1")',
+    titulo: 'noticia 4',
+    cuerpo: 'noticia 4',
+    fecha: '2022/05/27',
+    tags: [ 'trabajo' ]
+  },
+  {
+    _id: ObjectId("63723a4af6bcecd64896b05c"),
+    id_usuario: 'ObjectId("636d56a212eea0a554e6caf2")',
+    titulo: 'noticia 5',
+    cuerpo: 'noticia 5',
+    fecha: '2015/02/09',
+    tags: []
+  },
+  {
+    _id: ObjectId("63723a4af6bcecd64896b05d"),
+    id_usuario: 'ObjectId("636d56a212eea0a554e6caf2")',
+    titulo: 'noticia 6',
+    cuerpo: 'noticia 6',
+    fecha: '2020/07/02',
+    tags: []
+  },
+  {
+    _id: ObjectId("63723a4af6bcecd64896b05e"),
+    id_usuario: 'ObjectId("636d56a212eea0a554e6caf2")',
+    titulo: 'noticia 7',
+    cuerpo: 'noticia 7',
+    fecha: '2045/07/02',
+    tags: []
+  },
+  {
+    _id: ObjectId("63723a4af6bcecd64896b05f"),
+    id_usuario: 'ObjectId("636d56cf12eea0a554e6caf3")',
+    titulo: 'noticia 8',
+    cuerpo: 'noticia 8',
+    fecha: '2014/02/09',
+    tags: []
+  },
+  {
+    _id: ObjectId("63723a4af6bcecd64896b060"),
+    id_usuario: 'ObjectId("636d56cf12eea0a554e6caf3")',
+    titulo: 'noticia 9',
+    cuerpo: 'noticia 9',
+    fecha: '2012/07/02',
+    tags: []
+  },
+  {
+    _id: ObjectId("63723a4af6bcecd64896b061"),
+    id_usuario: 'ObjectId("636d56cf12eea0a554e6caf3")',
+    titulo: 'noticia 10',
+    cuerpo: 'noticia 10',
+    fecha: '2030/12/31',
+    tags: [ 'noticia 10' ]
+  }
+] 

@@ -1,0 +1,228 @@
+Comandos Basicos
+● Limpiar consola (Ctrl + L / cls)
+● Listar todas las bases de datos - show dbs
+● Cambiarse de base de datos - use <dbname> -. Si no existe la crea.
+● Mostrar el nombre de la base de datos - db.getName () o db
+● Listar los metadatos sobre una base de datos - db.stats()
+● Solicitar ayuda sobre comandos - db.help()
+
+● Eliminar una base de datos estando dentro de ella db.dropDatabase()
+● Eliminar una colección de datos - db.COLLECTION_NAME.drop()
+
+
+CRUD
+
+Insertar
+db.collectionName().insert()  <- Vale para todo
+db.collectionName().insertOne()
+db.collectionName().insertMany()
+
+Eliminar
+db.collectionName().deleteOne()  <- Elimina la primera coincidencia que encuentra   
+db.collectionName().deleteMany()  <- Elimina todas los documentos que haya encontrado   
+
+Actualizar
+db.collection.updateOne({<filter>}, {<update>})
+db.collection.updateMany({<filter>}, {<update>})
+db.collection.update({<filter>}, { <update>}, { upsert : true }) <- Si no existe lo crea con el upsert
+
+Reemplazar
+db.collection.replaceOne({<filter>}, {<update>})
+
+Consultar
+db.collection.find() <- Muestra todos los documentos de la colección
+db.collection.find(<filter>) <- Muestra los documentos que pasan por el filtro 
+
+Consultas sobre Documentos anidados
+db.COLLECTION_NAME.find({“key1.subkey1”: val_s1})
+
+db.COLLECTION_NAME.find({“key1.subkey1”: {$operador: val_s1}} <- donde value puede llevar por ejemplo un operador condicional
+
+Proyecciones
+Muestra la parte del documento que queramos
+db.COLLECTION_NAME.find({},{key1:1, key2:1, _id:0}) <-muestra los valores con 1
+db.COLLECTION_NAME.find({<filter>},{key1:1, key2:1, _id:0}) <-se le puede aplicar un filtro
+
+db.COLLECTION_NAME.find().limit(NUMBER) limita el numero de resultados mostrados
+
+db.COLLECTION_NAME.find().skip(NUMBER).limit(NUMBER) salta x numero de resultados
+
+db.COLLECTION_NAME.find().sort({KEY:1}) ordena los resultados obtenidos(1) ascendente (-1) descendente
+
+ARRAYS
+Modificar un elemento concreto (por posición) dentro de un array.
+> db.COLLECTION_NAME.updateOne({ <filter>}, { $set : { “key2.pos” : “new_value”}})
+Añadir un elemento al array por la derecha
+> db.COLLECTION_NAME.updateOne({ <filter>}, { $push : { “key2” : “new_value” }})
+Eliminar un elemento del array por la izquierda (para que fuese por la derecha, habría que
+sustituir -1 por 1 positivo)
+> db.COLLECTION_NAME.updateOne({ <filter>}, { $pop : { “key2” : -1 }})
+Añadir varios los elementos especificados al Array
+> db.COLLECTION_NAME.update({ <filter>}, { $pushAll : { “key2” : [ “new_value_b0”,
+“new_value_b1”, “new_value_b2” ]}})
+Eliminar un elemento cualquiera del array especificando su valor.
+> db.COLLECTION_NAME.update({ <filter> }, { $pull : { “key2” : “value_a1” ]}})
+Eliminar todos los elementos coincidentes del Array.
+> db.COLLECTION_NAME.update({ <filter> }, { $pullAll : { “key2” : [ “value_a0”,” value_a1” ]}})
+Añadir un elemento al array únicamente si no existe ya.
+> db.COLLECTION_NAME.update({ <filter> }, { $addToSet : { “key2” : “new_value_c1” ]}})
+
+
+
+
+Operadores Condicionales
+Menor que {<key>:{$lt:<value>}}
+Menor o igual que {<key>:{$lte:<value>}}
+Mayor que {<key>:{$gt:<value>}}
+Mayor o igual que {<key>:{$gte:<value>}}
+Es igual {<key>:{$eq:<value>}}
+No es igual {<key>:{$ne:<value>}}
+Valores en una matriz {<key>:{$in:[<value1>,..., <valueN>]}}
+Valores que no están en una matriz {<key>:{$nin:[<value1>,..., <valueN>]}}
+Existe? {key:{$exists:true}} No Existe? {key:{$exists:false}}
+
+Operadores lógicos
+AND {$and:[{key1:<value1>},{ key2:value2}]}
+OR {$or: [{key1: value1},{key2:value2}]}
+NOR {$nor:[{key1: value1},{key2:value2}]}
+NOT {$NOT: [{key1: value1},{key2:value2}]}
+
+Operaciones (consulta y actualización) sobre arrays
+key2: [value_a0, value_a1, value_a2]
+● Igualdad de todo el array exactamente (exactamente en un orden concreto)
+{key2: [value_a0, value_a1, value_a2]}
+● Igualdad de todo el array exactamente (sin importar el orden)
+{key2: {$all:[value_a1, value_a2, value_a0]}
+● Encontrar un elemento dentro del array que cumpla una condición
+{key2: {$operador: value_a1}}
+● Encontrar un elemento dentro del array que cumpla más de una condición
+{key2:{$elemMatch:{value_a1,value_a2}}}
+● Búsqueda/Modificación por posición dentro del array
+{“key2.pos”: value_a1}
+● Búsqueda de los documentos que tengan el array de un tamaño concreto
+{key2: {$size:tamaño}}
+● Añadir un elemento al array por la derecha
+{ $push : { “key2” : “new_value” }}
+● Eliminar un elemento del array por la izquierda (para que fuese por la derecha,
+habría que sustituir -1 por 1 positivo)
+{ $pop : { “key2” : -1 }}
+● Añadir varios los elementos especificados al Array
+{ $pushAll : { “key2” : [ “new_value_b0”, “new_value_b1”, “new_value_b2”]}}
+● Eliminar un elemento cualquiera del array especificando su valor.
+{ $pull : { “key2” : “value_a1” }}
+● Eliminar todos los elementos coincidentes del Array.
+{ $pullAll : { “key2” : [ “value_a0”,” value_a1” ]}}
+● Añadir un elemento al array únicamente si no existe ya.
+{ $addToSet : { “key2” : “new_value_c1” ]}
+
+Indices
+Los indices nos ayudan a que mongo busque de manera 
+los índices son “estructuras de datos especiales que almacenan una
+pequeña porción de los datos de la colección de tal forma que sea fácil
+de recorrer
+
+
+db.COLLECTION_NAME.find({<fiter>}).explain(“executionStats”) <- - -  btendremos información relacionada a la ejecución de la consulta
+● “executionTimeMillis”: tiempo total de la ejecución de la consulta en milisegundos.
+● “totalDocsExamined”: número total de documentos analizados.
+
+Consultar los índices existentes
+>db.COLLECTION_NAME.getIndexes()
+
+Crear indices
+db.collection.createIndex(keys:orden, options)
+db.collection.createIndex({“email”:1},{unique:true})
+db.collection.createIndex({“nombre”:1, “apellidos”:1},{unique:true})
+
+las options que podemos poner son:
+name(string): El nombre del indice 
+sparse (booleano): Permite filtrar los resultados que se obtienen buscando por índice y no mostrando aquellos que no tienen el campo.
+partialFilterExpression(documento):Si se especifica, el índice solo hace referencia a documentos que coinciden con la expresión de filtro. Solo se indexa la parte de la muestra que cumpla la condición
+especificada.
+Una expresión de filtro puede incluir:
+● expresiones de igualdad (es decir, field: value o utilizando el $eq operador),
+● $exists: true expresión,
+● $gt, $gte, $lt, $lte Expresiones,
+● $type expresiones,
+● $and operador en el nivel superior solamente
+
+expireAfterSeconds (entero): Especifica un valor, en segundos, como TTL para controlar cuánto tiempo MongoDB retiene
+los documentos de esta colección y el propio motor de mongo eliminará el documento
+transcurrido ese tiempo desde que se indexó
+db.collection.createIndex( { "Key": 1 }, { expireAfterSeconds: 3600 } )
+
+Subdocumentos
+Se puede crear un índice sobre un subdocumento. Incluso se pueden mezclar las dos
+opciones:
+Ejemplo:
+db.cuentas.createIndex({"cuentas.saldo":1})
+db.cuentas.explain().find({"cuentas.saldo":{$gt:1500}})
+
+Eliminar índices
+Si un índice no se usa mucho es mejor eliminarlo.
+Podemos eliminar un índice en particular >db.COLLECTION_NAME.dropIndex({KEY_1})
+Podemos eliminar todos los índices (menos el del campo _id)
+>db.COLLECTION_NAME.dropIndexes()
+
+Tipos de índices
+● _id: Se genera automáticamente por parte de Mongo para cualquier documento.
+● Simples: Se definen sobre un único campo de cualquier documento.
+● Compuesto: Se definen sobre varios campos de un documento.
+● Multillave: Se emplean cuando el campo a indexar pertenece a un subdocumento
+dentro de un array del documento padre.
+● Texto: Se definen para indexar el contenido de los campos de tipo string.
+
+
+
+Agragaciones 
+
+operaciones de agregacion simple:
+Count: devuelve un entero de los documentos que cumplen con la query  db.collection.count("Query")
+Gruop: agrupa todos los documentdo de una colección segun el campo que se indicque  db.collection.group("campos")
+Distinct: devuelve los distintos campos unicos que exitan para el que se especifique db.collection.distinct("Query")
+
+En las agregaciones podemos usar las siguientes operaciones:
+$projet proyectar como las segunda parte del find
+$match como un find 
+$limit
+$skip
+$unwind destruye el array de un documento y construye muchos documentos que tienen un solo valor en el campo donde estaba el arrays
+    db.clothing.aggregate( [ { $unwind: "$sizes" } ] )
+    db.clothing.aggregate( [ { $unwind: { path: "$sizes" } } ] )
+$group
+$sort
+$lookup: es como un inner join su sintaxis es : 
+db.collection_x.aggregate{$lookup:{from:"collection-y", localField:"id-x" , foreingField:"id-y", as:"asignatura"}}}
+
+cleection y : clase {
+    nombre-clase: matematicas
+    curso 1234 }
+
+collection_x alumnos
+    {
+        nombre: pepe
+        clase: matematicas
+        curso 2
+    }
+
+$out guarda una coleccion de la consulta hecha 
+$and,or,not 
+$cmp
+$eq
+$gt,gte,lt,lte exactamente
+$in,nin 
+$sum (usarlo en group)
+$avg hace la media
+$first,last,max,min en array de datos
+operadores matematiscos
+
+operadores de hora
+$week,hour 
+
+Ejemplo
+para escribir una condicion en la query pondria de la siguiente forma
+
+{$cond{if{$condicion:["campo",value]},then:x,else:y}}
+
+
+projet match 

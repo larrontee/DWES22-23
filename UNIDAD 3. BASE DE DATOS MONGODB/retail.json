@@ -1,0 +1,57 @@
+EJERCICIO Ampliación Retail
+Las necesidades de nuestro negocio de retail han cambiado y se necesita gestionar el stock
+existente en cada tienda de cada producto.
+El volumen de productos ha crecido desmesuradamente y hay que tener un control sobre
+los stocks de cada tienda para que ninguna tenga menos de 5 unidades de cada producto.
+La actualización del stock es una operación muy frecuente.
+¿Cómo modificarías el diseño de la BD para guardar la siguiente información?
+Crearia una colección de tiendas insertando los datos de stock de cada producto.
+[{
+    tienda:'sevilla',
+    P0001:12,
+    P0002:0,
+    P0003:15
+    },
+    {
+    tienda:'Jerez',
+    P0001:32,
+    P0002:9,
+    P0003:0
+    },
+    {
+    tienda:'Cordoba',
+    P0001:8,
+    P0002:12,
+    P0003:0
+    },
+    {
+    tienda:'Chucena',
+    P0001:12,
+    P0002:5,
+    P0003:0
+    },
+    {
+    tienda:'Rota',
+    P0001:0,
+    P0002:0,
+    P0003:9
+    }]
+
+● P0001, stock en tienda: ['Jerez':32, 'Sevilla':12, 'Cordoba':8]
+● P0002, stock en tienda: ['Jerez':9, 'Chucena':5, 'Cordoba':12]
+● P0003, stock en tienda: ['Rota':9, 'Sevilla':15]
+Haz las modificaciones necesarias sobre la BD retail.
+
+
+Una vez modificado el diseño de la BD retail qué índices crearías, suponiendo que el
+volumen de productos es muy grande, con consultas muy frecuentes sobre producto y talla,
+así como una actualización continua del stock (recepción diaria por tienda y ventas durante todo el día).
+
+Crearia varios indices uno segun la cantidad de stock que tenga cada tienda y otro sobre las tallas disponibles en cada producto.
+
+Crea los índices necesarios sobre la BD retail.
+
+db.tiendas.createIndex({"P0001":-1,"P0002":-1,"P0003":-1},{unique:true})
+P0001_-1_P0002_-1_P0003_-1
+db.productos.createIndex({"talla":1}) 
+talla_1
